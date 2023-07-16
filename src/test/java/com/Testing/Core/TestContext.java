@@ -12,10 +12,8 @@ public class TestContext {
     public static WebDriverWait wait;
     public static String APIURL;
 
-
     public static WindowsDriver winAppDriver;
 
     public static Scenario scenario;
 
-    public static SwitchToWindowPage switchToWindowPage;
 }

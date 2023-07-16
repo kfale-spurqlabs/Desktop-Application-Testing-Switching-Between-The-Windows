@@ -19,7 +19,6 @@ public class SwitchToWindowStep extends TestContext {
     }
     @Given("I am on Calculator Windows App")
     public void iAmOnCalculatorWindowsApp() {
-
         //Assert.assertEquals("0", demoWinAppPage.returnResult());
 
     }
@@ -45,7 +44,7 @@ public class SwitchToWindowStep extends TestContext {
 
     @And("I switch to notepad app with name {string}")
     public void iSwitchToNotepad(String fileName) throws MalformedURLException, InterruptedException {
-        switchToWindowPage.switchToNotepadWindow(fileName);
+        switchToWindowPage.switchToOtherWindowApplication(fileName);
 
     }
 
@@ -62,5 +61,42 @@ public class SwitchToWindowStep extends TestContext {
             flag=true;
         }
         Assert.assertTrue(flag,"Notepad doesnot contain expected text");
+    }
+
+
+    @When("I switch to {string} excel workbook")
+    public void iSwitchToInputFileExcelWorkbook(String fileName) throws MalformedURLException, InterruptedException {
+        switchToWindowPage.switchToOtherWindowApplication(fileName);
+    }
+
+    @And("I read first number from sheet")
+    public void iReadFirstNumberFromSheet() {
+        switchToWindowPage.readOperand1();
+    }
+
+    @And("I switch to calculator")
+    public void iSwitchToCalculator() throws MalformedURLException, InterruptedException {
+        switchToWindowPage.switchToCalculator();
+    }
+
+    @And("I read operator from the sheet")
+    public void iReadOperatorFromTheSheet() {
+        switchToWindowPage.readTheOperator();
+    }
+
+    @And("I read second number from sheet")
+    public void iReadSecondNumberFromSheet() {
+        switchToWindowPage.readOperand2();
+    }
+
+    @And("I do calculation as per the data which I read from excel")
+    public void iDoCalculationAsPerTheDataWhichIReadFromExcel() {
+        switchToWindowPage.doCalculation();
+
+    }
+
+    @Then("I save the result in excel workbook")
+    public void iSaveTheResult() {
+        switchToWindowPage.saveResultInExcel();
     }
 }

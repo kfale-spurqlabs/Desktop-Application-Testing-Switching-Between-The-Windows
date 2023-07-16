@@ -41,9 +41,6 @@ public class WinAppUtil {
     }
 
 
-
-
-
     public static boolean serverListening(String host, int port) {
         Socket s = null;
         try {
@@ -60,7 +57,8 @@ public class WinAppUtil {
         }
     }
 
-    public static WindowsDriver switchToWindowWithName(String name) throws MalformedURLException, InterruptedException {
+    public static WindowsDriver switchToWindowWithName(String name) throws MalformedURLException,
+            InterruptedException {
         DesiredCapabilities capabilities = new DesiredCapabilities();
         capabilities.setCapability("app", "Root");
         capabilities.setCapability("platformName", "Windows");
@@ -89,5 +87,4 @@ public class WinAppUtil {
         }
         return null;
     }
-
 }

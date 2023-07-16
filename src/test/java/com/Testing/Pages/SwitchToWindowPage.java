@@ -77,14 +77,19 @@ public class SwitchToWindowPage extends TestContext {
     {
         winAppDriver.findElementByName("Equals").click();
         WebElement CalculatorResult = winAppDriver.findElementByAccessibilityId("CalculatorResults");
+        result= CalculatorResult.getText().replace("Display is", "").trim();;
         return CalculatorResult.getText().replace("Display is", "").trim();
     }
 
-    public void switchToNotepadWindow(String fileName) throws MalformedURLException, InterruptedException {
+    public void switchToOtherWindowApplication(String fileName) throws MalformedURLException, InterruptedException {
         sleep(2000);
         winAppDriver= WinAppUtil.switchToWindowWithName(fileName);
         sleep(100);
     }
+    public void switchToCalculator() throws MalformedURLException, InterruptedException {
+        winAppDriver=WinAppUtil.switchToWindowWithName("Calculator");
+    }
+
 
     public void enterTextInNotePad(String text) throws InterruptedException {
         sleep(500);
@@ -97,5 +102,55 @@ public class SwitchToWindowPage extends TestContext {
         String readText=winAppDriver.findElementByAccessibilityId("15").getText();
         System.out.println("Text from NotePad :"+readText);
         return readText;
+    }
+
+    String n1;
+    String n2;
+    String operator;
+    String result;
+
+
+    public void readOperand1() {
+        n1= winAppDriver.findElementByName("A2").getText();
+        System.out.println("n1 :"+n1);
+    }
+
+    public void readTheOperator() {
+        operator= winAppDriver.findElementByName("B2").getText();
+    }
+
+    public void readOperand2() {
+        n2= winAppDriver.findElementByName("C2").getText();
+    }
+
+
+    public void ClickOperator2(String Operator) {
+        switch (Operator) {
+            case "add":
+                winAppDriver.findElementByName("Plus").click();
+                break;
+            case "sub":
+                winAppDriver.findElementByName("Minus").click();
+                break;
+            case "mul":
+                winAppDriver.findElementByName("Multiply by").click();
+                break;
+            case "div":
+                winAppDriver.findElementByName("Divide by").click();
+                break;
+        }
+    }
+    public void doCalculation() {
+        this.EnterNumber(n1);
+        this.ClickOperator2(operator);
+        this.EnterNumber(n2);
+        winAppDriver.findElementByName("Equals").click();
+        WebElement CalculatorResult = winAppDriver.findElementByAccessibilityId("CalculatorResults");
+        result= CalculatorResult.getText().replace("Display is", "").trim();
+        System.out.println("result :"+result);}
+
+    public void saveResultInExcel() {
+        winAppDriver.findElementByName("D2").click();
+        winAppDriver.findElementByName("D2").sendKeys(result);
     }
 }
